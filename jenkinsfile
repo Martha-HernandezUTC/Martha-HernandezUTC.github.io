@@ -1,0 +1,20 @@
+pipeline {
+	agent any
+
+	stages {
+	    stage('docker build'){
+	        strps {
+	            script {
+	                sh "docker buil -f Martha-HernándezUTC.github.io/Dockerfile -t caosbinario/homer_page:1.0.0-${BUILD_ID} Martha-HernándezUTC.github.io"
+	            }
+	        }
+	    }
+	    stage('docker push') {
+	        steps {
+	            script {
+	                sh "docher push caosbinario/homer_page:1.0.0-${BUILD_ID}"
+	            }
+	        }
+	    }
+	}
+}
